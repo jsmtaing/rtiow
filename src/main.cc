@@ -3,6 +3,7 @@
 #include "vec3.h"
 
 #include <iostream>
+using point3 = vec3;
 
 color ray_color(const ray& r) {
     vec3 unit_direction = unit_vector(r.direction());
@@ -34,7 +35,7 @@ int main() {
     auto pixel_delta_v = viewport_v / image_height;
 
     //Calculate location of upper-left pixel
-    auto viewport_upper_left = camera_center - vec3(0, 0, focal_length) - viewport_u/2 - viewport_v/2;
+    auto viewport_upper_left = camera_center - (vec3(0, 0, focal_length)) - viewport_u/2 - viewport_v/2;
     auto pixel00_loc = viewport_upper_left + 0.5 * (pixel_delta_u + pixel_delta_v);
 
     //Render
