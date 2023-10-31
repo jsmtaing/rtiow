@@ -3,7 +3,6 @@
 #include "vec3.h"
 
 #include <iostream>
-using point3 = vec3;
 
 color ray_color(const ray& r) {
     vec3 unit_direction = unit_vector(r.direction());
