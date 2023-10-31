@@ -4,7 +4,6 @@
 
 #include <iostream>
 
-//temp stub that always return the ray color black
 color ray_color(const ray& r) {
     vec3 unit_direction = unit_vector(r.direction());
     auto a = 0.5 * (unit_direction.y() + 1.0);
