@@ -8,7 +8,7 @@ class sphere : public hittable {
     public:
         // Stationary Sphere
         sphere(point3 _center, double _radius, shared_ptr<material> _material)
-         : center(_center), radius(_radius), mat(_material), is_moving(false) {}
+         : center1(_center), radius(_radius), mat(_material), is_moving(false) {}
         
         // Moving Sphere
         sphere(point3 _center1, point3 _center2, double _radius, shared_ptr<material> _material)
@@ -18,7 +18,7 @@ class sphere : public hittable {
         }
 
         bool hit(const ray& r, interval ray_t, hit_record& rec) const override {
-            point3 center = is_moving ? sphere_center(r.time()) : center1;
+            point3 center = is_moving ? center(r.time()) : center1;
             vec3 oc = r.origin() - center;
             auto a = r.direction().length_squared();
             auto half_b = dot(oc, r.direction());
@@ -55,7 +55,7 @@ class sphere : public hittable {
         point3 center(double time) const {
             // Linearly interpolates from center1 to center2 according to time, where t = 0 yields
             // center1, and t = 1 yields center2.
-            return center0 + time * center_vec;
+            return center1 + time * center_vec;
         }
 };
 
